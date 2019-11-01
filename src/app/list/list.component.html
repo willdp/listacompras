@@ -1,15 +1,16 @@
-<div>
-    <h3>Adicionar item:</h3>
-    <input class="itemLista" placeholder="item" (input) = "onInput($event)" [(ngModel)] = "searchValue">
-    <br>
-    <br>
-    <button (click) = "onClick()" >Submit</button>
+<div class ='main-page'>  
+  <div>
+        <h3>Adicionar item:</h3>
+        <input class="itemLista" placeholder="item" (input) = "onInput($event)" [(ngModel)] = "searchValue">
+        <br>
+        <br>
+        <button class="btn btn-danger" (click) = "onClick()" >Submit</button>
+    </div>
+    <div>
+        <li  [ngClass] = "classeRisca" *ngFor = "let item of lista">
+            {{item}}
+            <button (click) = "nPress()" class="riscar btn btn-danger">riscar</button>
+            <hr>
+        </li>
+    </div>
 </div>
-<div>
-    <li *ngFor = "let item of lista">
-        {{item}}
-        <button class="riscar">riscar</button>
-    </li>
-</div>
-
-<button class="organizar" (click) = sortList()>organizar</button>

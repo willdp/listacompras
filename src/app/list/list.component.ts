@@ -13,6 +13,8 @@ export class ListComponent implements OnInit {
 
   public novoItem: any = '';
 
+  public classeRisca: string = ' ';
+
   public onInput (event) {
     this.novoItem = event.target.value;
    
@@ -25,8 +27,8 @@ export class ListComponent implements OnInit {
 
   }
 
-  public sortList() {
-    
+  public onPress() {
+    this.classeRisca = 'item-lista-modified'
   }
   
 
