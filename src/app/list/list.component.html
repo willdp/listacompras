@@ -1,16 +1,29 @@
-<div class ='main-page'>  
-  <div>
-        <h3>Adicionar item:</h3>
-        <input class="itemLista" placeholder="item" (input) = "onInput($event)" [(ngModel)] = "searchValue">
-        <br>
-        <br>
-        <button class="btn btn-danger" (click) = "onClick()" >Submit</button>
+ <div class = "main">
+   <div class = 'submiter'>  
+        <div>
+            <h2>Adicionar item:</h2>
+            <input class = "itemLista" placeholder = "item a adicionar" [(ngModel)] = "novoItem">
+            <br>
+            <br>
+            <button class = "btn btn-danger" (click) = "onClick()" >Submit</button>
+        </div>
+        <div class = "adder">
+            <ol>
+            <li [ngClass] = "{'riscado':item.riscado}" *ngFor = "let item of lista; let i = index">
+                {{item.item}}
+                <button (click) = "riscar(i)" class = "riscar btn btn-danger">Riscar</button>
+                <hr>
+            </li>
+            </ol> 
+        </div>
     </div>
-    <div>
-        <li  [ngClass] = "classeRisca" *ngFor = "let item of lista">
-            {{item}}
-            <button (click) = "nPress()" class="riscar btn btn-danger">riscar</button>
-            <hr>
-        </li>
+    <div class = "deleter">
+        <div>
+            <h2>Remover Item:</h2>
+            <input class = "RemoverItem" placeholder = "Remover" [(ngModel)] = "deleting">
+            <br>
+            <br>
+            <button (click) = "aleatorio(deleting)" class = "btn btn-danger">Remover</button>
+        </div>
     </div>
-</div>
+</div>  

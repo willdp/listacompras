@@ -6,16 +6,20 @@
     margin: 10px 10px 10px 100px;
 }
 
-.main-page {
+.submiter {
     padding-left: 5%;
-    width: 50%;
-    
+    width: 800px;
 }
 
-.item-lista {
-    text-decoration: none;
+.riscado {
+    text-decoration-line: line-through;
 }
 
-.item-lista-modified {
-    text-decoration: line-through;
+.deleter {
+    width: 800px;
+    padding-left: 5%;
+}
+
+.main {
+    display: inline-flex;
 }
