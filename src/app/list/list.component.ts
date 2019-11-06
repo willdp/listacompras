@@ -15,6 +15,8 @@ export class ListComponent implements OnInit {
 
   public lista: ModeloLista[] = [];
 
+  public deletedList: string[];
+
   public novoItem = '';
 
   public deleting: string = '';
@@ -31,9 +33,9 @@ export class ListComponent implements OnInit {
   }
 
   public aleatorio() {
-
-   console.log(this.deleting);
-   this.lista.pop();
+   this.lista.splice(Number(this.deleting) - 1, 1);
+   this.deletedList.push() 
+   this.deleting = '';
 
   }
   

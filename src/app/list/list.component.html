@@ -5,13 +5,13 @@
             <input class = "itemLista" placeholder = "item a adicionar" [(ngModel)] = "novoItem">
             <br>
             <br>
-            <button class = "btn btn-danger" (click) = "onClick()" >Submit</button>
+            <button class = "btn btn-primary" (click) = "onClick()" >Submit</button>
         </div>
         <div class = "adder">
             <ol>
             <li [ngClass] = "{'riscado':item.riscado}" *ngFor = "let item of lista; let i = index">
                 {{item.item}}
-                <button (click) = "riscar(i)" class = "riscar btn btn-danger">Riscar</button>
+                <button (click) = "riscar(i)" class = "riscar btn btn-warning">Riscar</button>
                 <hr>
             </li>
             </ol> 
@@ -20,7 +20,7 @@
     <div class = "deleter">
         <div>
             <h2>Remover Item:</h2>
-            <input class = "RemoverItem" placeholder = "Remover" [(ngModel)] = "deleting">
+            <input class = "RemoverItem" placeholder = "Número a remover" [(ngModel)] = "deleting">
             <br>
             <br>
             <button (click) = "aleatorio(deleting)" class = "btn btn-danger">Remover</button>
