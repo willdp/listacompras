@@ -34,7 +34,6 @@ export class ListComponent implements OnInit {
 
   public aleatorio() {
    this.lista.splice(Number(this.deleting) - 1, 1);
-   this.deletedList.push() 
    this.deleting = '';
 
   }
