@@ -1,11 +1,15 @@
 <div class="">
     <div class = "card card-body w-25 mx-auto shadow-lg mt-5">
         <h5>E-mail</h5>
-        <input placeholder="e-mail">
+        <input placeholder="e-mail" [(ngModel)] = 'email'>
         <br>
         <h5>Senha:</h5>
-        <input placeholder="senha">
+        <input placeholder="senha" [(ngModel)] = 'password'>
         <br>
-        <a routerLink = 'list'><button class=" btn btn-success">Login</button></a>
+           <div class="d-flex justify-content-between">
+            <a routerLink = ""><button class=" btn btn-success" (click)='doLogin(email, password)'>Sign In</button></a>
+            <a routerLink = ""><button class="btn btn-primary" (click)='doRegister(email, password)'>Sign up</button></a>
+            <a routerLink =''><button class="btn btn-danger" (click)='doLogout()'>Log out</button></a>
+           </div> 
     </div>
 </div> 

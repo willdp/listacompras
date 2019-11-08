@@ -10,6 +10,10 @@ import { DatabaseService } from 'src/service/database.service';
 import { AuthenticatorService } from 'src/service/authenticator.service';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
 
 const appRoutes: Routes = [
   { path: '', component: LoginPageComponent },
@@ -24,6 +28,9 @@ const appRoutes: Routes = [
     LoginPageComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }
