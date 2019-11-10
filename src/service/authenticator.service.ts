@@ -18,10 +18,10 @@ export class AuthenticatorService {
     firebase.auth().createUserWithEmailAndPassword(email, password).then( () => {
       this.router.navigate(['list'])
     }).catch((error) => {
-      email = this.email;
-      password = this.password;
-      this.email = '';
-      this.password = '';
+      email= this.email;
+      password= this.password;
+      this.email= '';
+      this.password= '';
     })
     firebase.auth().onAuthStateChanged(user => {
     });
@@ -43,8 +43,8 @@ export class AuthenticatorService {
   };
 
   public doLogout() {
-    firebase.auth().signOut().then(function() {
-    }).catch(function(error) {
+    firebase.auth().signOut().then(() => {
+      this.router.navigate([''])}).catch(function(error) {
     })
     window.alert('Você foi deslogado!');
     firebase.auth().onAuthStateChanged(user => {

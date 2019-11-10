@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticatorService } from '../../service/authenticator.service';
 
 @Component({
   selector: 'app-topbar',
@@ -9,9 +10,12 @@ export class TopbarComponent implements OnInit {
 
   public title: string = 'My list';
 
-  constructor() { }
+  constructor(public auth: AuthenticatorService) { }
 
   ngOnInit() {
   }
 
+  public doLogout() {
+    this.auth.doLogout();
+  }
 }

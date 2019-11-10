@@ -23,7 +23,4 @@ export class LoginPageComponent implements OnInit {
   public doRegister(email, password){
     this.auth.doRegister(email, password);
   }
-  public doLogout() {
-    this.auth.doLogout();
-  }
 }

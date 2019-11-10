@@ -21,7 +21,7 @@ export class ListComponent implements OnInit {
 
   public deleting: string = '';
 
-  public onClick() {
+  public onAdding() {
     if(this.novoItem === ''){ return ;}
     this.lista.push({item: this.novoItem, riscado: false});
     this.novoItem = '';
@@ -32,7 +32,7 @@ export class ListComponent implements OnInit {
     this.lista[i].riscado = !this.lista[i].riscado;
   }
 
-  public aleatorio() {
+  public onDelete() {
    this.lista.splice(Number(this.deleting) - 1, 1);
    this.deleting = '';
 
