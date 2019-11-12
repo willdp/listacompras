@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthenticatorService } from '../service/authenticator.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'appwill';
+
+  constructor(public auth: AuthenticatorService ){
+      this.auth.listenAuthState();
+  }
 }

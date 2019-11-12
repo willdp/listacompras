@@ -12,34 +12,30 @@ export class AuthenticatorService {
   public password: string = '';
   public authorization: string = '';
   public user: any = '';
+;
+  public listenAuthState (){
+    firebase.auth().onAuthStateChanged(user => {
+      this.user = user;
+    })
+  }
 
   public doRegister(email, password){
     
     firebase.auth().createUserWithEmailAndPassword(email, password).then( () => {
       this.router.navigate(['list'])
     }).catch((error) => {
-      email= this.email;
-      password= this.password;
-      this.email= '';
-      this.password= '';
+      console.log(error);
     })
-    firebase.auth().onAuthStateChanged(user => {
-    });
   };
 
   public doLogin(email, password){
     firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-      this.router.navigate(['list'])
+      this.router.navigate(['list']);
     }
     ).catch((error) => {
       console.error('login',error);
     })
-    
-    firebase.auth().onAuthStateChanged(user => {
-      console.log(user);
-      this.user = user;
-      }
-    );
+    ;
   };
 
   public doLogout() {
@@ -47,10 +43,11 @@ export class AuthenticatorService {
       this.router.navigate([''])}).catch(function(error) {
     })
     window.alert('Você foi deslogado!');
-    firebase.auth().onAuthStateChanged(user => {
-    })
-
   } 
+
+  public getUserID() {
+    return this.user.uid;
+  }
 
   constructor(public afAuth: AngularFireAuth,
               public router: Router

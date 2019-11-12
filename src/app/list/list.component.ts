@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { isNgTemplate } from '@angular/compiler';
+import { DatabaseService } from '../../service/database.service';
+import { AuthenticatorService } from '../../service/authenticator.service';
 
 export interface ModeloLista {
+
     item: string;
     riscado: boolean;
+    userId?: any;
 }
  
 @Component({
@@ -21,11 +24,15 @@ export class ListComponent implements OnInit {
 
   public deleting: string = '';
 
-  public onAdding() {
+  public riscado: boolean = false;
+
+  public newListItem: any;
+ 
+  public onAdding(riscado) {
     if(this.novoItem === ''){ return ;}
+    this.newListItem = this.pushDatabase(this.novoItem, riscado);
     this.lista.push({item: this.novoItem, riscado: false});
     this.novoItem = '';
-
   }
 
   public riscar(i) {
@@ -37,8 +44,12 @@ export class ListComponent implements OnInit {
    this.deleting = '';
 
   }
+
+  public pushDatabase(item, riscado) {
+    this.database.writeUserData(item, riscado);
+  }
   
-  constructor() { }
+  constructor(public database: DatabaseService) { }
 
   ngOnInit() {
   }
