@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
-import { DatabaseModel } from './database.service-model';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthenticatorService } from './authenticator.service';
+import * as R from 'ramda';
 
 @Injectable({
     providedIn: 'root'
@@ -10,10 +10,21 @@ import { AuthenticatorService } from './authenticator.service';
 
 export class DatabaseService {
 
-   public database: firebase.database.Reference;
+  public list: any [] = [];
 
 constructor(public afDb: AngularFireDatabase,
             public User: AuthenticatorService) { }
+
+    public async getList(){
+      let list:any[] = [];
+      const userId = this.User.getUserID();
+      const ItemList = firebase.database().ref('users/' + userId);
+      await ItemList.once('value', function(snapshot){
+        list = R.values(snapshot.val())
+        console.log('subscription', list)
+      })
+    console.log(list);
+    }
 
     public writeUserData(item, riscado) {
         const userId = this.User.getUserID();
@@ -21,6 +32,6 @@ constructor(public afDb: AngularFireDatabase,
         newKey.set({
         item,
         riscado,
-        });
+        })
     }
 }

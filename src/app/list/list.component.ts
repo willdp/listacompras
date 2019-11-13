@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../../service/database.service';
-import { AuthenticatorService } from '../../service/authenticator.service';
 
 export interface ModeloLista {
 
@@ -30,6 +29,8 @@ export class ListComponent implements OnInit {
  
   public onAdding(riscado) {
     if(this.novoItem === ''){ return ;}
+    this.listing();
+
     this.newListItem = this.pushDatabase(this.novoItem, riscado);
     this.lista.push({item: this.novoItem, riscado: false});
     this.novoItem = '';
@@ -47,6 +48,10 @@ export class ListComponent implements OnInit {
 
   public pushDatabase(item, riscado) {
     this.database.writeUserData(item, riscado);
+  }
+
+  public listing(){
+    this.database.getList();
   }
   
   constructor(public database: DatabaseService) { }
