@@ -20,10 +20,7 @@ constructor(public afDb: AngularFireDatabase,
       const userId = this.User.getUserID();
       const ItemList = firebase.database().ref('users/' + userId);
       await ItemList.once('value', function(snapshot){
-        R.forEachObjIndexed((item, key) => list.push(), snapshot.val());
-        console.log(snapshot);
-        console.log(snapshot.val());
-        console.log(list);
+        list = R.values(snapshot.val());
       })
       this.list = list;
     }
@@ -38,7 +35,7 @@ constructor(public afDb: AngularFireDatabase,
     }
     public deleteItem() {
       const userId = this.User.getUserID();
-      const deletedKey = firebase.database().ref('users/').remove();
+      const deletedKey = firebase.database().ref('users/' + userId).remove();
     }
     public returnDatabaseList(){
       return this.list;
