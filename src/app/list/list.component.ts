@@ -15,7 +15,7 @@ export interface ModeloLista {
 })
 export class ListComponent implements OnInit {
 
-  public lista: ModeloLista[] = [];
+  public lista: any[] = [];
 
   public deletedList: string[];
 
@@ -29,8 +29,6 @@ export class ListComponent implements OnInit {
  
   public onAdding(riscado) {
     if(this.novoItem === ''){ return ;}
-    this.listing();
-
     this.newListItem = this.pushDatabase(this.novoItem, riscado);
     this.lista.push({item: this.novoItem, riscado: false});
     this.novoItem = '';
@@ -50,13 +48,16 @@ export class ListComponent implements OnInit {
     this.database.writeUserData(item, riscado);
   }
 
-  public listing(){
-    this.database.getList();
+  public async listing(){
+    await this.database.getList();
+    const databaseList = this.database.returnDatabaseList();
+    this.lista = databaseList;
   }
   
   constructor(public database: DatabaseService) { }
 
   ngOnInit() {
+    setTimeout(() => this.listing(), 1000);
   }
 
 }
